@@ -20,7 +20,7 @@ public class EstadoRepositoryImpl implements EstadosRepository{
 	private EntityManager maneger;
 	
 	@Override
-	public List<Estado> todos() {
+	public List<Estado> listar() {
 
 		return maneger.createQuery("from Estado", Estado.class).getResultList();
 	}

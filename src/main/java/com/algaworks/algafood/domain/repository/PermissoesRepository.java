@@ -7,7 +7,7 @@ import com.algaworks.algafood.domain.entity.Permissao;
 
 public interface PermissoesRepository {
 
-	List<Permissao> todos();
+	List<Permissao> listar();
 	Permissao porId(Long id);
 	Permissao adicionar(Permissao permissao);
 	void remover(Permissao permissao);
