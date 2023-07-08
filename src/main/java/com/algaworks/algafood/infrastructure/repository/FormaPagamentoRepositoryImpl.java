@@ -20,7 +20,7 @@ public class FormaPagamentoRepositoryImpl implements FormaPagamentoRepository{
 	private EntityManager maneger;
 	
 	@Override
-	public List<FormaPagamento> todos() {
+	public List<FormaPagamento> listar() {
 
 		return maneger.createQuery("from FormaPagamento", FormaPagamento.class).getResultList();
 	}

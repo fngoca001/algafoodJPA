@@ -20,7 +20,7 @@ public class PermissaoRepositoryImpl implements PermissoesRepository{
 	private EntityManager maneger;
 	
 	@Override
-	public List<Permissao> todos() {
+	public List<Permissao> listar() {
 
 		return maneger.createQuery("from Permissao", Permissao.class).getResultList();
 	}

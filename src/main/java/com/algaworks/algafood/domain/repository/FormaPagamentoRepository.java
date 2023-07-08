@@ -7,7 +7,7 @@ import com.algaworks.algafood.domain.entity.FormaPagamento;
 
 public interface FormaPagamentoRepository {
 
-	List<FormaPagamento> todos();
+	List<FormaPagamento> listar();
 	FormaPagamento porId(Long id);
 	FormaPagamento adicionar(FormaPagamento formaPagamento);
 	void remover(FormaPagamento formaPagamento);
