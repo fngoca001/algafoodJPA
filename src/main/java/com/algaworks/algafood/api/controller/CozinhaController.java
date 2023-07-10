@@ -59,7 +59,7 @@ public class CozinhaController {
 
 			return ResponseEntity.ok(cozinhaAtual);
 		}
-		
+
 		return ResponseEntity.notFound().build();
 	}
 }
