@@ -8,6 +8,6 @@ public interface CozinhasRepository {
 
 	List<Cozinha> listar();
 	Cozinha porId(Long id);
-	Cozinha adicionar(Cozinha cozinha);
-	void remover(Cozinha cozinha);
+	Cozinha salvar(Cozinha cozinha);
+	void remover(Long cozinhaId);
 }
