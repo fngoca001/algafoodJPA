@@ -1,13 +1,9 @@
 package com.algaworks.algafood.domain.repository;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.algaworks.algafood.domain.entity.Restaurante;
 
-public interface RestaurantesRepository {
+public interface RestaurantesRepository extends JpaRepository<Restaurante, Long>{
 
-	List<Restaurante> listar();
-	Restaurante porId(Long id);
-	Restaurante adicionar(Restaurante restaurante);
-	void remover(Restaurante restaurante);
 }
