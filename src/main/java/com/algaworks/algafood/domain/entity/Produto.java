@@ -1,5 +1,7 @@
 package com.algaworks.algafood.domain.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,11 +27,11 @@ public class Produto {
 	@Column(name = "nome", nullable = false)
 	private String nome;
 	
-	@Column(name = "discricao", nullable = false)
+	@Column(name = "descricao", nullable = false)
 	private String descricao;
 	
-	@Column(name = "contentType", nullable = false)
-	private String  contentType;
+	@Column(name = "preco", nullable = false)
+	private BigDecimal  preco;
 	
 	@Column (name = "ativo")
 	private boolean ativo;
