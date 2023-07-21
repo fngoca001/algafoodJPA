@@ -7,12 +7,16 @@ import java.util.Optional;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 
 import com.algaworks.algafood.domain.entity.Restaurante;
 
 public interface RestaurantesRepository
 		extends CustomJpaRepository<Restaurante, Long>, RestaurantesRepositoryQueries, JpaSpecificationExecutor<Restaurante> {
 
+	@Query("from Restaurante r join fetch r.cozinha join fetch r.formaPagamento")
+	List<Restaurante> findAll();
+	
 	// Retorna uma lista de restaurante num intervalo de taxa frete
 	List<Restaurante> findByTaxaFreteBetween(BigDecimal taxaInicial, BigDecimal taxaFinal);
 
