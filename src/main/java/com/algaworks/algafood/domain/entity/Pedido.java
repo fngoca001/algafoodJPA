@@ -2,14 +2,20 @@ package com.algaworks.algafood.domain.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
-import javax.annotation.Generated;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,35 +24,40 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode
 @Table(name = "pedido")
-public class Pedito {
+public class Pedido {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "sob_total")
 	private BigDecimal sobTotal;
-	
-	@Column(name = "taxa_frete")
 	private BigDecimal taxaFrete;
-	
-	@Column(name = "valor_total")
 	private BigDecimal valorTotal;
 	
-	@Column(name = "data_criacao")	
+	@Embedded
+	private Endereco enderecoEntrega;
+	
+	private StatusPedido status;
+	
+	@CreationTimestamp
 	private LocalDateTime dataCriacao;
 	
-	@Column(name = "data_confirmacao")
 	private LocalDateTime dataConfirmacao;
-	
-	@Column(name = "data_cancelamento")
 	private LocalDateTime dataCancelamento;
-	
-	@Column(name = "dataEntrega")
 	private LocalDateTime dataEntrega;
-	private Restaurante resta_erante;
 	
+	@ManyToOne
+	@JoinColumn(nullable = false)
 	private FormaPagamento formaPagamento;
 	
+	@ManyToOne
+	@JoinColumn(nullable = false)
+	private Restaurante restaurante;
+	
+	@ManyToOne
+	@JoinColumn(name = "usuario_cliente_id", nullable = false)
 	private Usuario cliente;
+	
+	@OneToMany(mappedBy = "pedido")
+	private List<ItemPedido> itens =  new ArrayList<>();
 }

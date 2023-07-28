@@ -24,19 +24,19 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "nome", nullable = false)
+	@Column(nullable = false)
 	private String nome;
 	
-	@Column(name = "descricao", nullable = false)
+	@Column(nullable = false)
 	private String descricao;
 	
-	@Column(name = "preco", nullable = false)
+	@Column(nullable = false)
 	private BigDecimal  preco;
 	
-	@Column (name = "ativo")
+	@Column (nullable = false)
 	private boolean ativo;
 	
 	@ManyToOne
-	@JoinColumn(name = "restaurante_id", nullable = false)
+	@JoinColumn(nullable = false)
 	private Restaurante restaurante;
 }

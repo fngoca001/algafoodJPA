@@ -14,7 +14,6 @@ import lombok.EqualsAndHashCode;
 
 @Entity
 @Data
-@Table(name = "Cidade")
 public class Cidade {
 
 	@Id
@@ -26,6 +25,6 @@ public class Cidade {
 	private String nome;
 	
 	@ManyToOne
-	@JoinColumn(name = "estado_id", nullable = false)
+	@JoinColumn(nullable = false)
 	private Estado estado;
 }

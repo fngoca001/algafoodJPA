@@ -1,0 +1,85 @@
+
+create table forma_pagamento (id bigint not null auto_increment, 
+descricao varchar(60) not null, 
+primary key (id)
+) engine=InnoDB default charset=utf8;
+
+
+create table grupo (id bigint not null auto_increment, 
+nome varchar(60), 
+primary key (id)
+) engine=InnoDB default charset=utf8;
+
+
+create table grupo_permissao (grupo_id bigint not null, 
+permissao_id bigint not null
+) engine=InnoDB default charset=utf8;
+
+
+create table grupo_usuario (grupo_id bigint not null, 
+usuario_id bigint not null
+) engine=InnoDB default charset=utf8;
+
+
+create table permissao (id bigint not null auto_increment, 
+descricao varchar(80) not null, 
+nome varchar(60) not null, 
+primary key (id)) engine=InnoDB default charset=utf8;
+
+create table produto (id bigint not null auto_increment, 
+ativo bit, 
+descricao varchar(80) not null, 
+nome varchar(60) not null, 
+preco decimal(19,2) not null, 
+restaurante_id bigint not null, 
+primary key (id)
+) engine=InnoDB default charset=utf8;
+
+create table restaurante (id bigint not null auto_increment, 
+data_atualizacao dateTime not null, 
+data_cadastro dateTime not null, 
+endereco_bairro varchar(60), 
+endereco_cep varchar(60), 
+endereco_complemento varchar(60), 
+endereco_logradouro varchar(60), 
+endereco_numero varchar(60),
+ nome varchar(60) not null, 
+ taxa_frete decimal(19,2) not null, 
+ cozinha_id bigint not null, 
+ endereco_cidade_id bigint,
+ primary key (id)
+ ) engine=InnoDB default charset=utf8;
+ 
+ 
+create table restaurante_forma_pagamento (restaurante_id bigint not null, 
+forma_pagamento_id bigint not null) 
+engine=InnoDB default charset=utf8;
+
+ 
+create table usuario (id bigint not null auto_increment, 
+data_cadastro datetime(6), 
+email varchar(60), 
+nome varchar(60), 
+senha varchar(60), 
+primary key (id)) engine=InnoDB default charset=utf8;
+
+
+alter table grupo_permissao add constraint fk_grupo_permissao_permissao foreign key (permissao_id) references permissao (id);
+
+alter table grupo_permissao add constraint fk_grupo_permissao_grupo foreign key (grupo_id) references grupo (id);
+
+alter table grupo_usuario add constraint fk_grupo_usuario_grupo foreign key (usuario_id) references grupo (id);
+
+alter table grupo_usuario add constraint fk_grupo_usuario_usuario foreign key (grupo_id) references usuario (id);
+
+alter table produto add constraint fk_produto_restaurante foreign key (restaurante_id) references restaurante (id);
+
+alter table restaurante add constraint fk_restaurante_cozinha foreign key (cozinha_id) references cozinha (id);
+
+alter table restaurante add constraint FKbc0tm7hnvc96d8e7e2ulb05yw foreign key (endereco_cidade_id) references cidade (id);
+
+alter table restaurante_forma_pagamento add constraint fk_restaurante_forma_pagamento_forma_pagamento foreign key (forma_pagamento_id) references forma_pagamento (id);
+
+alter table restaurante_forma_pagamento add constraint fk_restaurante_forma_pagamento_restaurante foreign key (restaurante_id) references restaurante (id);
+
+

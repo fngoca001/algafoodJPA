@@ -11,8 +11,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "Forma_Pagamento")
 public class FormaPagamento {
 
 	@Id
@@ -20,6 +20,6 @@ public class FormaPagamento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "descricao", nullable = false)
+	@Column(nullable = false)
 	private String descricao;
 }
