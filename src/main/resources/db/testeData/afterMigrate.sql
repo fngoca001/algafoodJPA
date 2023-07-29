@@ -46,6 +46,10 @@ insert into restaurante (id, nome, taxa_frete, cozinha_id, data_cadastro, data_a
 insert into restaurante (id, nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values (4, 'Java Steakhouse', 12, 3, utc_timestamp, utc_timestamp);
 insert into restaurante (id, nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values (5, 'Lanchonete do Tio Sam', 11, 4, utc_timestamp, utc_timestamp);
 insert into restaurante (id, nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values (6, 'Bar da Maria', 6, 4, utc_timestamp, utc_timestamp);
+insert into restaurante (id,nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values (7, 'Dona Ana', 9.5, 1, utc_timestamp, utc_timestamp);
+insert into restaurante (id,nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values (8, 'Bom Garfo', 16, 3, utc_timestamp, utc_timestamp);
+insert into restaurante (id,nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values (9, 'Marinha', 5, 2, utc_timestamp, utc_timestamp);
+insert into restaurante (id,nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values (10, 'Dona Tereza', 14.19, 4, utc_timestamp, utc_timestamp);
 
 insert into forma_pagamento (id, descricao) values (1, 'Cartão de crédito');
 insert into forma_pagamento (id, descricao) values (2, 'Cartão de débito');
