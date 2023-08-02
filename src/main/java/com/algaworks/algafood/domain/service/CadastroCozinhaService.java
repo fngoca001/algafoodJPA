@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.algaworks.algafood.domain.entity.Cozinha;
 import com.algaworks.algafood.domain.exception.CozinhaNaoEncontradaException;
 import com.algaworks.algafood.domain.exception.EntidadeEmUsoException;
-import com.algaworks.algafood.domain.exception.EntidadeNaoEncontradaException;
 import com.algaworks.algafood.domain.repository.CozinhasRepository;
 
 @Service

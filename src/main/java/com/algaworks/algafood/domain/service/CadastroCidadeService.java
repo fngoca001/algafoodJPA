@@ -9,14 +9,10 @@ import com.algaworks.algafood.domain.entity.Cidade;
 import com.algaworks.algafood.domain.entity.Estado;
 import com.algaworks.algafood.domain.exception.CidadeNaoEncontradaException;
 import com.algaworks.algafood.domain.exception.EntidadeEmUsoException;
-import com.algaworks.algafood.domain.exception.EntidadeNaoEncontradaException;
-import com.algaworks.algafood.domain.repository.CidadesRepository;
-import com.algaworks.algafood.domain.repository.EstadosRepository;;
+import com.algaworks.algafood.domain.repository.CidadesRepository;;
 
 @Service
 public class CadastroCidadeService {
-
-	private static final String MSG_ESTADO_NAO_ENCONTRADO = "Nao existe cadastro de Estado com codigo %d";
 
 	private static final String MSG_CIDADE_EM_USO = "Cidade de codigo %d nao pode ser removida, pois esta em uso";
 
