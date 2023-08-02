@@ -7,14 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
 @Data
-@Table(name = "Cidade")
 public class Cidade {
 
 	@Id
@@ -26,6 +24,6 @@ public class Cidade {
 	private String nome;
 	
 	@ManyToOne
-	@JoinColumn(name = "estado_id", nullable = false)
+	@JoinColumn(nullable = false)
 	private Estado estado;
 }

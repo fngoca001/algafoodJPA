@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "Permissao")
 public class Permissao {
@@ -20,9 +21,9 @@ public class Permissao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "nome", nullable = false)
+	@Column(nullable = false)
 	private String nome;
 	
-	@Column(name = "descricao", nullable = false)
+	@Column(nullable = false)
 	private String descricao;
 }

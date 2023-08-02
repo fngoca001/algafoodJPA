@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -27,21 +29,22 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "nome")
+	@Column(nullable = false)
 	private String nome;
 	
-	@Column(name = "email")
+	@Column(nullable = false)
 	private String email;
 	
-	@Column(name = "senha")
+	@Column(nullable = false)
 	private String senha;
 	
-	@Column(name = "data_cadastro")
+	@CreationTimestamp
+	@Column(nullable = false, columnDefinition = "datetime")
 	private LocalDateTime dataCadastro;
 	
 	@ManyToMany
-	@JoinTable(name = "grupo_usuario", 
-			joinColumns = @JoinColumn(name = "grupo_id"), 
-			inverseJoinColumns = @JoinColumn(name = "usuario_id"))
-	private List<Grupo> grupo = new ArrayList<>();
+	@JoinTable(name = "usuario_grupo", 
+			joinColumns = @JoinColumn(name = "usuario_id"), 
+			inverseJoinColumns = @JoinColumn(name = "grupo_id"))
+	private List<Grupo> grupos = new ArrayList<>();
 }
