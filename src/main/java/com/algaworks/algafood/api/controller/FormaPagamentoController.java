@@ -29,57 +29,41 @@ public class FormaPagamentoController {
 
 	@Autowired
 	private FormaPagamentoRepository formaPagamentoRepository;
-	
+
 	@Autowired
-	private CadastroFormaPagamentoService cadastroFormaPagamentoService;
-	
+	private CadastroFormaPagamentoService cadastroFormaPagamento;
+
 	@GetMapping
-	public List<FormaPagamento> listar(){
+	public List<FormaPagamento> listar() {
 		return formaPagamentoRepository.findAll();
 	}
-	
+
 	@GetMapping("/{formaPagamentoId}")
 	public ResponseEntity<FormaPagamento> buscar(@PathVariable Long formaPagamentoId) {
-		 Optional<FormaPagamento> formaPagamento = formaPagamentoRepository.findById(formaPagamentoId);
+		Optional<FormaPagamento> formaPagamento = formaPagamentoRepository.findById(formaPagamentoId);
 		if (formaPagamento.isPresent()) {
 			return ResponseEntity.ok(formaPagamento.get());
 		}
 		return ResponseEntity.notFound().build();
 	}
-	
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public FormaPagamento adicionar(@RequestBody FormaPagamento formaPagamento) {
-		return formaPagamentoRepository.save(formaPagamento);
+		return cadastroFormaPagamento.salvar(formaPagamento);
 	}
 
 	@PutMapping("/{formaPagamentoId}")
-	public ResponseEntity<FormaPagamento> atualizar(@PathVariable Long formaPagamentoId, @RequestBody FormaPagamento formaPagamento) {
-		Optional<FormaPagamento> formaPagamentoAtual = formaPagamentoRepository.findById(formaPagamentoId);
+	public FormaPagamento atualizar(@PathVariable Long formaPagamentoId, @RequestBody FormaPagamento formaPagamento) {
+		FormaPagamento formaPagamentoAtual = cadastroFormaPagamento.buscarOuFalhar(formaPagamentoId);
 
-		if (formaPagamentoAtual.isPresent()) {
-			BeanUtils.copyProperties(formaPagamento, formaPagamentoAtual.get(), "id");
+		BeanUtils.copyProperties(formaPagamento, formaPagamentoAtual, "id");
 
-			FormaPagamento formaPagamentoSalvar = cadastroFormaPagamentoService.salvar(formaPagamentoAtual.get());
-
-			return ResponseEntity.ok(formaPagamentoSalvar);
-		}
-
-		return ResponseEntity.notFound().build();
+		return cadastroFormaPagamento.salvar(formaPagamentoAtual);
 	}
-	
-	@DeleteMapping("/{formaPagamentoId}")
-	public ResponseEntity<FormaPagamento> remover(@PathVariable Long formaPagamentoId) {
-		try {
-			cadastroFormaPagamentoService.excluir(formaPagamentoId);
-			return ResponseEntity.noContent().build();
-			
-		} catch (EntidadeNaoEncontradaException e) {
-			return ResponseEntity.notFound().build();
-			
-		} catch (EntidadeEmUsoException e) {
-			return ResponseEntity.status(HttpStatus.CONFLICT).build();
-		}
 
+	@DeleteMapping("/{formaPagamentoId}")
+	public void remover(@PathVariable Long formaPagamentoId) {
+		cadastroFormaPagamento.excluir(formaPagamentoId);
 	}
 }

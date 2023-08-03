@@ -15,6 +15,8 @@ import com.algaworks.algafood.domain.repository.PermissoesRepository;
 @Service
 public class CadastroPermissoesService {
 
+	private static final String MSG_PERMISSAO_NAO_ENCOTRADA = "Permissao de codigo %d nao pode ser removida, pois esta em uso";
+	private static final String MSG_PERMISSAO_NAO_ENCONTRADA = "Nao existe um cadastro de Permissao com codigo %d";
 	@Autowired
 	private PermissoesRepository permissoesRepository;
 
@@ -28,10 +30,15 @@ public class CadastroPermissoesService {
 			permissoesRepository.deleteById(permissaoId);
 		} catch (EmptyResultDataAccessException e) {
 			throw new EntidadeNaoEncontradaException(
-					String.format("Nao existe um cadastro de Estado com codigo %d", permissaoId));
+					String.format(MSG_PERMISSAO_NAO_ENCONTRADA, permissaoId));
 		} catch (DataIntegrityViolationException e) {
 			throw new EntidadeEmUsoException(
-					String.format("Estado de codigo %d nao pode ser removida, pois esta em uso", permissaoId));
+					String.format(MSG_PERMISSAO_NAO_ENCOTRADA, permissaoId));
 		}
+	}
+
+	public Permissao buscarOuFalhar(Long permissaoId) {
+		return permissoesRepository.findById(permissaoId).orElseThrow(() -> new EntidadeNaoEncontradaException(
+				String.format(MSG_PERMISSAO_NAO_ENCONTRADA, permissaoId)));
 	}
 }
