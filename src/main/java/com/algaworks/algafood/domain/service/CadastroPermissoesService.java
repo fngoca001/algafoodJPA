@@ -24,21 +24,19 @@ public class CadastroPermissoesService {
 		return permissoesRepository.save(permissao);
 	}
 
-	public void excluir(Long permissaoId) {
-
-		try {
-			permissoesRepository.deleteById(permissaoId);
-		} catch (EmptyResultDataAccessException e) {
-			throw new EntidadeNaoEncontradaException(
-					String.format(MSG_PERMISSAO_NAO_ENCONTRADA, permissaoId));
-		} catch (DataIntegrityViolationException e) {
-			throw new EntidadeEmUsoException(
-					String.format(MSG_PERMISSAO_NAO_ENCOTRADA, permissaoId));
-		}
-	}
-
-	public Permissao buscarOuFalhar(Long permissaoId) {
-		return permissoesRepository.findById(permissaoId).orElseThrow(() -> new EntidadeNaoEncontradaException(
-				String.format(MSG_PERMISSAO_NAO_ENCONTRADA, permissaoId)));
-	}
+	/*
+	 * public void excluir(Long permissaoId) {
+	 * 
+	 * try { permissoesRepository.deleteById(permissaoId); } catch
+	 * (EmptyResultDataAccessException e) { throw new
+	 * EntidadeNaoEncontradaException( String.format(MSG_PERMISSAO_NAO_ENCONTRADA,
+	 * permissaoId)); } catch (DataIntegrityViolationException e) { throw new
+	 * EntidadeEmUsoException( String.format(MSG_PERMISSAO_NAO_ENCOTRADA,
+	 * permissaoId)); } }
+	 * 
+	 * public Permissao buscarOuFalhar(Long permissaoId) { return
+	 * permissoesRepository.findById(permissaoId).orElseThrow(() -> new
+	 * EntidadeNaoEncontradaException( String.format(MSG_PERMISSAO_NAO_ENCONTRADA,
+	 * permissaoId))); }
+	 */
 }

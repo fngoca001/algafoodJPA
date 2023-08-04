@@ -24,21 +24,20 @@ public class CadastroFormaPagamentoService {
 		return formaPagamentoRepository.save(formaPagamento);
 	}
 
-	public void excluir(Long formaPagamentoId) {
-
-		try {
-			formaPagamentoRepository.deleteById(formaPagamentoId);
-		} catch (EmptyResultDataAccessException e) {
-			throw new EntidadeNaoEncontradaException(
-					String.format(MSG_FORMA_PAGAMENTO_NAO_ENCONTRADO, formaPagamentoId));
-		} catch (DataIntegrityViolationException e) {
-			throw new EntidadeEmUsoException(String.format(
-					MSG_FORMA_PAGAMENTO_EM_USO, formaPagamentoId));
-		}
-	}
-
-	public FormaPagamento buscarOuFalhar(Long formaPagamentoId) {
-		return formaPagamentoRepository.findById(formaPagamentoId).orElseThrow(() -> new EntidadeNaoEncontradaException(
-				String.format(MSG_FORMA_PAGAMENTO_NAO_ENCONTRADO, formaPagamentoId)));
-	}
+	/*
+	 * public void excluir(Long formaPagamentoId) {
+	 * 
+	 * try { formaPagamentoRepository.deleteById(formaPagamentoId); } catch
+	 * (EmptyResultDataAccessException e) { throw new
+	 * EntidadeNaoEncontradaException(
+	 * String.format(MSG_FORMA_PAGAMENTO_NAO_ENCONTRADO, formaPagamentoId)); } catch
+	 * (DataIntegrityViolationException e) { throw new
+	 * EntidadeEmUsoException(String.format( MSG_FORMA_PAGAMENTO_EM_USO,
+	 * formaPagamentoId)); } }
+	 * 
+	 * public FormaPagamento buscarOuFalhar(Long formaPagamentoId) { return
+	 * formaPagamentoRepository.findById(formaPagamentoId).orElseThrow(() -> new
+	 * EntidadeNaoEncontradaException(
+	 * String.format(MSG_FORMA_PAGAMENTO_NAO_ENCONTRADO, formaPagamentoId))); }
+	 */
 }

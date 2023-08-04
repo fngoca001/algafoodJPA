@@ -53,17 +53,17 @@ public class FormaPagamentoController {
 		return cadastroFormaPagamento.salvar(formaPagamento);
 	}
 
-	@PutMapping("/{formaPagamentoId}")
-	public FormaPagamento atualizar(@PathVariable Long formaPagamentoId, @RequestBody FormaPagamento formaPagamento) {
-		FormaPagamento formaPagamentoAtual = cadastroFormaPagamento.buscarOuFalhar(formaPagamentoId);
-
-		BeanUtils.copyProperties(formaPagamento, formaPagamentoAtual, "id");
-
-		return cadastroFormaPagamento.salvar(formaPagamentoAtual);
-	}
-
-	@DeleteMapping("/{formaPagamentoId}")
-	public void remover(@PathVariable Long formaPagamentoId) {
-		cadastroFormaPagamento.excluir(formaPagamentoId);
-	}
+	/*
+	 * @PutMapping("/{formaPagamentoId}") public FormaPagamento
+	 * atualizar(@PathVariable Long formaPagamentoId, @RequestBody FormaPagamento
+	 * formaPagamento) { FormaPagamento formaPagamentoAtual =
+	 * cadastroFormaPagamento.buscarOuFalhar(formaPagamentoId);
+	 * 
+	 * BeanUtils.copyProperties(formaPagamento, formaPagamentoAtual, "id");
+	 * 
+	 * return cadastroFormaPagamento.salvar(formaPagamentoAtual); }
+	 * 
+	 * @DeleteMapping("/{formaPagamentoId}") public void remover(@PathVariable Long
+	 * formaPagamentoId) { cadastroFormaPagamento.excluir(formaPagamentoId); }
+	 */
 }

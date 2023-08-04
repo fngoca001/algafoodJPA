@@ -53,18 +53,19 @@ public class PermissoesController {
 		return cadastroPermissoes.salvar(permissao);
 	}
 
-	@PutMapping("/{permissoesId}")
-	public Permissao atualizar(@PathVariable Long permissoesId, @RequestBody Permissao permissao) {
-		Permissao permissaoAtual = cadastroPermissoes.buscarOuFalhar(permissoesId);
-
-			BeanUtils.copyProperties(permissao, permissaoAtual, "id");
-
-		return cadastroPermissoes.salvar(permissaoAtual);
-	}
-
-	@DeleteMapping("/{permissoesId}")
-	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void remover(@PathVariable Long permissoesId) {
-		cadastroPermissoes.excluir(permissoesId);
-	}
+	/*
+	 * @PutMapping("/{permissoesId}") public Permissao atualizar(@PathVariable Long
+	 * permissoesId, @RequestBody Permissao permissao) { Permissao permissaoAtual =
+	 * cadastroPermissoes.buscarOuFalhar(permissoesId);
+	 * 
+	 * BeanUtils.copyProperties(permissao, permissaoAtual, "id");
+	 * 
+	 * return cadastroPermissoes.salvar(permissaoAtual); }
+	 * 
+	 * @DeleteMapping("/{permissoesId}")
+	 * 
+	 * @ResponseStatus(value = HttpStatus.NO_CONTENT) public void
+	 * remover(@PathVariable Long permissoesId) {
+	 * cadastroPermissoes.excluir(permissoesId); }
+	 */
 }

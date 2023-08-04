@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.CONFLICT)
 //@ResponseStatus(value = HttpStatus.CONFLICT)
-public class EntidadeEmUsoException extends RuntimeException {
+public class EntidadeEmUsoException extends NegocioException {
 
 	private static final long serialVersionUID = 1L;
 
