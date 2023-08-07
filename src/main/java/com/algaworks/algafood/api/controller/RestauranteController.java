@@ -99,10 +99,8 @@ public class RestauranteController {
 				Field field = ReflectionUtils.findField(Restaurante.class, nomePropriedade);
 				field.setAccessible(true);
 				
-				Object novoValor = ReflectionUtils.getField(field, restauranteOrigem);
-				
-//				System.out.println(nomePropriedade + " = " + valorPropriedade + " = " + novoValor);
-				
+				Object novoValor = ReflectionUtils.getField(field, restauranteOrigem);				
+//				System.out.println(nomePropriedade + " = " + valorPropriedade + " = " + novoValor);				
 				ReflectionUtils.setField(field, restauranteDestino, novoValor);
 			});
 		} catch (IllegalArgumentException e) {
