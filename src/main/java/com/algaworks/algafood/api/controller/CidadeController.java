@@ -44,9 +44,8 @@ public class CidadeController {
 	}
 
 	@PostMapping
-	@ResponseStatus(HttpStatus.ACCEPTED)
+	@ResponseStatus(HttpStatus.CREATED)
 	public Cidade adicionar(@RequestBody @Valid Cidade cidade) {
-		
 		try {
 			return cadastroCidade.salvar(cidade);
 		} catch (EstadoNaoEncontradaException e) {
@@ -55,18 +54,17 @@ public class CidadeController {
 	}
 
 	@PutMapping("/{cidadeId}")
-	public Cidade atualizar(@PathVariable Long cidadeId, @RequestBody Cidade cidade) {
-
+	public Cidade atualizar(@PathVariable Long cidadeId,
+			@RequestBody @Valid Cidade cidade) {
 		try {
 			Cidade cidadeAtual = cadastroCidade.buscarouFalhar(cidadeId);
-
+			
 			BeanUtils.copyProperties(cidade, cidadeAtual, "id");
 			
 			return cadastroCidade.salvar(cidadeAtual);
 		} catch (EstadoNaoEncontradaException e) {
 			throw new NegocioException(e.getMessage(), e);
 		}
-		
 	}
 
 	@DeleteMapping("/{cidadeId}")

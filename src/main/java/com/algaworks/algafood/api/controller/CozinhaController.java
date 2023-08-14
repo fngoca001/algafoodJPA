@@ -41,17 +41,18 @@ public class CozinhaController {
 	}
 
 	@PostMapping
-	@ResponseStatus(HttpStatus.ACCEPTED)
+	@ResponseStatus(HttpStatus.CREATED)
 	public Cozinha adicionar(@RequestBody @Valid Cozinha cozinha) {
 		return cadastroCozinha.salvar(cozinha);
 	}
 
 	@PutMapping("/{cozinhaId}")
-	public Cozinha atualizar(@PathVariable Long cozinhaId, @RequestBody Cozinha cozinha) {
+	public Cozinha atualizar(@PathVariable Long cozinhaId,
+			@RequestBody @Valid Cozinha cozinha) {
 		Cozinha cozinhaAtual = cadastroCozinha.buscarOuFalhar(cozinhaId);
-
+		
 		BeanUtils.copyProperties(cozinha, cozinhaAtual, "id");
-
+		
 		return cadastroCozinha.salvar(cozinhaAtual);
 	}
 

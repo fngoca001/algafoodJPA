@@ -42,17 +42,18 @@ public class EstaoController {
 	}
 
 	@PostMapping
-	@ResponseStatus(HttpStatus.ACCEPTED)
-	public Estado adicionar(@RequestBody @Valid  Estado estado) {
+	@ResponseStatus(HttpStatus.CREATED)
+	public Estado adicionar(@RequestBody @Valid Estado estado) {
 		return cadastroEstado.salvar(estado);
 	}
-
+	
 	@PutMapping("/{estadoId}")
-	public Estado atualizar(@PathVariable Long estadoId, @RequestBody Estado estado) {
+	public Estado atualizar(@PathVariable Long estadoId,
+			@RequestBody @Valid Estado estado) {
 		Estado estadoAtual = cadastroEstado.buscarOuFalhar(estadoId);
-
+		
 		BeanUtils.copyProperties(estado, estadoAtual, "id");
-
+		
 		return cadastroEstado.salvar(estadoAtual);
 	}
 
