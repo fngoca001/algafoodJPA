@@ -31,7 +31,7 @@ public class Cozinha {
 	private Long id;
 
 	@NotBlank
-	@Column(name = "nome", nullable = false)
+	@Column(nullable = false)
 	private String nome;
 
 	@JsonIgnore
