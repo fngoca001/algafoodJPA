@@ -43,11 +43,11 @@ public class Restaurante {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	  
-	@NotBlank
+	
+	@NotBlank(message = "Nome é obrigatório")
 	@Column(nullable = false)
 	private String nome;
-
+	
 	@PositiveOrZero
 	@Column(name = "taxa_frete", nullable = false)
 	private BigDecimal taxaFrete;
@@ -56,7 +56,7 @@ public class Restaurante {
 	@ConvertGroup(from = Default.class, to = Groups.CozinhaId.class)
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "cozinha_id",nullable = false)
+	@JoinColumn(name = "cozinha_id", nullable = false)
 	private Cozinha cozinha;
 	
 	@JsonIgnore
@@ -75,10 +75,10 @@ public class Restaurante {
 	
 	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name = "restaurante_forma_pagamento", 
-			joinColumns = @JoinColumn(name = "restaurante_id"), 
+	@JoinTable(name = "restaurante_forma_pagamento",
+			joinColumns = @JoinColumn(name = "restaurante_id"),
 			inverseJoinColumns = @JoinColumn(name = "forma_pagamento_id"))
-	private List<FormaPagamento> formaPagamento = new ArrayList<>();  
+	private List<FormaPagamento> formasPagamento = new ArrayList<>();
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "restaurante")

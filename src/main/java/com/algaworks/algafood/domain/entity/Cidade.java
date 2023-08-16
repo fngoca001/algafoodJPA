@@ -19,16 +19,17 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Data
 public class Cidade {
 
-	@Id
 	@EqualsAndHashCode.Include
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotBlank
-	@Column(name = "nome", nullable = false)
+	@Column(nullable = false)
 	private String nome;
 	
 	@Valid
