@@ -15,60 +15,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.algaworks.algafood.domain.exception.EstadoNaoEncontradoException;
-import com.algaworks.algafood.domain.exception.NegocioException;
-import com.algaworks.algafood.domain.model.Cidade;
-import com.algaworks.algafood.domain.repository.CidadeRepository;
-import com.algaworks.algafood.domain.service.CadastroCidadeService;
+import com.algaworks.algafood.domain.entity.Cozinha;
+import com.algaworks.algafood.domain.repository.CozinhasRepository;
+import com.algaworks.algafood.domain.service.CadastroCozinhaService;
 
 @RestController
-@RequestMapping(value = "/cidades")
-public class CidadeController {
+@RequestMapping(value = "/cozinhas")
+public class CozinhaController {
 
 	@Autowired
-	private CidadeRepository cidadeRepository;
+	private CozinhasRepository cozinhaRepository;
 	
 	@Autowired
-	private CadastroCidadeService cadastroCidade;
+	private CadastroCozinhaService cadastroCozinha;
 	
 	@GetMapping
-	public List<Cidade> listar() {
-		return cidadeRepository.findAll();
+	public List<Cozinha> listar() {
+		return cozinhaRepository.findAll();
 	}
 	
-	@GetMapping("/{cidadeId}")
-	public Cidade buscar(@PathVariable Long cidadeId) {
-		return cadastroCidade.buscarOuFalhar(cidadeId);
+	@GetMapping("/{cozinhaId}")
+	public Cozinha buscar(@PathVariable Long cozinhaId) {
+		return cadastroCozinha.buscarOuFalhar(cozinhaId);
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Cidade adicionar(@RequestBody Cidade cidade) {
-		try {
-			return cadastroCidade.salvar(cidade);
-		} catch (EstadoNaoEncontradoException e) {
-			throw new NegocioException(e.getMessage(), e);
-		}
+	public Cozinha adicionar(@RequestBody Cozinha cozinha) {
+		return cadastroCozinha.salvar(cozinha);
 	}
 	
-	@PutMapping("/{cidadeId}")
-	public Cidade atualizar(@PathVariable Long cidadeId,
-			@RequestBody Cidade cidade) {
-		try {
-			Cidade cidadeAtual = cadastroCidade.buscarOuFalhar(cidadeId);
-			
-			BeanUtils.copyProperties(cidade, cidadeAtual, "id");
-			
-			return cadastroCidade.salvar(cidadeAtual);
-		} catch (EstadoNaoEncontradoException e) {
-			throw new NegocioException(e.getMessage(), e);
-		}
+	@PutMapping("/{cozinhaId}")
+	public Cozinha atualizar(@PathVariable Long cozinhaId,
+			@RequestBody Cozinha cozinha) {
+		Cozinha cozinhaAtual = cadastroCozinha.buscarOuFalhar(cozinhaId);
+		
+		BeanUtils.copyProperties(cozinha, cozinhaAtual, "id");
+		
+		return cadastroCozinha.salvar(cozinhaAtual);
 	}
 	
-	@DeleteMapping("/{cidadeId}")
+	@DeleteMapping("/{cozinhaId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void remover(@PathVariable Long cidadeId) {
-		cadastroCidade.excluir(cidadeId);	
+	public void remover(@PathVariable Long cozinhaId) {
+		cadastroCozinha.excluir(cozinhaId);
 	}
 	
 }

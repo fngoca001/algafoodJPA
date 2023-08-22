@@ -14,37 +14,38 @@ import com.algaworks.algafood.domain.repository.CidadesRepository;;
 @Service
 public class CadastroCidadeService {
 
-	private static final String MSG_CIDADE_EM_USO = "Cidade de codigo %d nao pode ser removida, pois esta em uso";
+	private static final String MSG_CIDADE_EM_USO = "Cidade de código %d não pode ser removida, pois está em uso";
 
 	@Autowired
-	private CidadesRepository cidadesRepository;
+	private CidadesRepository cidadeRepository;
 
 	@Autowired
 	private CadastroEstadoService cadastroEstado;
 
 	public Cidade salvar(Cidade cidade) {
 		Long estadoId = cidade.getEstado().getId();
+
 		Estado estado = cadastroEstado.buscarOuFalhar(estadoId);
-	
+
 		cidade.setEstado(estado);
 
-		return cidadesRepository.save(cidade);
+		return cidadeRepository.save(cidade);
 	}
 
 	public void excluir(Long cidadeId) {
 		try {
-			cidadesRepository.deleteById(cidadeId);
+			cidadeRepository.deleteById(cidadeId);
 
 		} catch (EmptyResultDataAccessException e) {
 			throw new CidadeNaoEncontradaException(cidadeId);
+
 		} catch (DataIntegrityViolationException e) {
 			throw new EntidadeEmUsoException(String.format(MSG_CIDADE_EM_USO, cidadeId));
 		}
 	}
 
-	public Cidade buscarouFalhar(Long cidadeId) {
-		return cidadesRepository.findById(cidadeId).orElseThrow(() 
-				-> new CidadeNaoEncontradaException(cidadeId));
+	public Cidade buscarOuFalhar(Long cidadeId) {
+		return cidadeRepository.findById(cidadeId).orElseThrow(() -> new CidadeNaoEncontradaException(cidadeId));
 	}
 
 }

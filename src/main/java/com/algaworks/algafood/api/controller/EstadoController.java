@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.algaworks.algafood.domain.model.Estado;
-import com.algaworks.algafood.domain.repository.EstadoRepository;
+import com.algaworks.algafood.domain.entity.Estado;
+import com.algaworks.algafood.domain.repository.EstadosRepository;
 import com.algaworks.algafood.domain.service.CadastroEstadoService;
 
 @RestController
@@ -24,7 +24,7 @@ import com.algaworks.algafood.domain.service.CadastroEstadoService;
 public class EstadoController {
 
 	@Autowired
-	private EstadoRepository estadoRepository;
+	private EstadosRepository estadoRepository;
 	
 	@Autowired
 	private CadastroEstadoService cadastroEstado;

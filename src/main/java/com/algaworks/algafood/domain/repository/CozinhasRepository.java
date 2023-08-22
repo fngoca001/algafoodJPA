@@ -7,12 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.algaworks.algafood.domain.entity.Cozinha;
 
-public interface CozinhasRepository extends JpaRepository<Cozinha, Long>{
+public interface CozinhasRepository extends JpaRepository<Cozinha, Long> {
 
-List<Cozinha> findTodasByNomeContaining(String nome);
-	
+	List<Cozinha> findTodasByNomeContaining(String nome);
+
 	Optional<Cozinha> findByNome(String nome);
-	
+
 	boolean existsByNome(String nome);
-	
+
 }
