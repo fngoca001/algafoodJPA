@@ -13,27 +13,26 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Entity
 @Data
-@EqualsAndHashCode
-@Table(name = "pedido")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
 public class Pedido {
 
+	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private BigDecimal sobTotal;
+	private BigDecimal subtotal;
 	private BigDecimal taxaFrete;
 	private BigDecimal valorTotal;
-	
+
 	@Embedded
 	private Endereco enderecoEntrega;
 	
@@ -41,7 +40,7 @@ public class Pedido {
 	
 	@CreationTimestamp
 	private LocalDateTime dataCriacao;
-	
+
 	private LocalDateTime dataConfirmacao;
 	private LocalDateTime dataCancelamento;
 	private LocalDateTime dataEntrega;
@@ -59,5 +58,6 @@ public class Pedido {
 	private Usuario cliente;
 	
 	@OneToMany(mappedBy = "pedido")
-	private List<ItemPedido> itens =  new ArrayList<>();
+	private List<ItemPedido> itens = new ArrayList<>();
+
 }

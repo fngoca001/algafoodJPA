@@ -9,21 +9,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Entity
 @Data
-@Table(name = "Produto")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
 public class Produto {
 
-	@Id
 	@EqualsAndHashCode.Include
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(nullable = false)
 	private String nome;
 	
@@ -31,12 +30,13 @@ public class Produto {
 	private String descricao;
 	
 	@Column(nullable = false)
-	private BigDecimal  preco;
+	private BigDecimal preco;
 	
-	@Column (nullable = false)
-	private boolean ativo;
-	
+	@Column(nullable = false)
+	private Boolean ativo;
+
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Restaurante restaurante;
+
 }
