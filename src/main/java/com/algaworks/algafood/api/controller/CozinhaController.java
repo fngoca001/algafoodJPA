@@ -24,14 +24,14 @@ import com.algaworks.algafood.domain.service.CadastroCozinhaService;
 public class CozinhaController {
 
 	@Autowired
-	private CozinhasRepository cozinhaRepository;
+	private CozinhasRepository cozinhasRepository;
 	
 	@Autowired
 	private CadastroCozinhaService cadastroCozinha;
 	
 	@GetMapping
 	public List<Cozinha> listar() {
-		return cozinhaRepository.findAll();
+		return cozinhasRepository.findAll();
 	}
 	
 	@GetMapping("/{cozinhaId}")

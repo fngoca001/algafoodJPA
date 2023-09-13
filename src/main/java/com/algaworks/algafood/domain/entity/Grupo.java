@@ -1,5 +1,6 @@
 package com.algaworks.algafood.domain.entity;
 
+
 import java.util.ArrayList;
 import java.util.List;
 

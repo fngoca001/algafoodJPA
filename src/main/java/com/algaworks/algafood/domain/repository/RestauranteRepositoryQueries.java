@@ -5,9 +5,11 @@ import java.util.List;
 
 import com.algaworks.algafood.domain.entity.Restaurante;
 
-public interface RestaurantesRepositoryQueries {
+public interface RestauranteRepositoryQueries {
 
-	List<Restaurante> find(String nome, BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal);
-
+	List<Restaurante> find(String nome, 
+			BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal);
+	
 	List<Restaurante> findComFreteGratis(String nome);
+
 }

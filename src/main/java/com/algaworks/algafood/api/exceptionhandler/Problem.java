@@ -15,17 +15,10 @@ import lombok.Getter;
 public class Problem {
 
 	private Integer status;
-	private LocalDateTime timestamp;
 	private String type;
 	private String title;
-	private String detail;	
-	private String userMessage;
-	private List<Fild> filds;
+	private String detail;
 	
-	@Getter
-	@Builder
-	public static class Fild{
-		private String name;
-		private String userMessage;
-	}
+	private String userMessage;
+	
 }

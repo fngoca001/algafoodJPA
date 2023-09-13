@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.algaworks.algafood.domain.entity.Restaurante;
 import com.algaworks.algafood.domain.exception.CozinhaNaoEncontradaException;
 import com.algaworks.algafood.domain.exception.NegocioException;
-import com.algaworks.algafood.domain.repository.RestaurantesRepository;
+import com.algaworks.algafood.domain.repository.RestauranteRepository;
 import com.algaworks.algafood.domain.service.CadastroRestauranteService;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,7 +36,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class RestauranteController {
 
 	@Autowired
-	private RestaurantesRepository restauranteRepository;
+	private RestauranteRepository restauranteRepository;
 	
 	@Autowired
 	private CadastroRestauranteService cadastroRestaurante;

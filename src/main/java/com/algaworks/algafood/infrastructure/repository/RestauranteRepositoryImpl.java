@@ -1,4 +1,5 @@
 package com.algaworks.algafood.infrastructure.repository;
+
 import static com.algaworks.algafood.infrastructure.repository.spec.RestauranteSpecs.comFreteGratis;
 import static com.algaworks.algafood.infrastructure.repository.spec.RestauranteSpecs.comNomeSemelhante;
 
@@ -16,18 +17,17 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import com.algaworks.algafood.domain.entity.Restaurante;
-
-import com.algaworks.algafood.domain.repository.RestaurantesRepository;
-import com.algaworks.algafood.domain.repository.RestaurantesRepositoryQueries;
+import com.algaworks.algafood.domain.repository.RestauranteRepository;
+import com.algaworks.algafood.domain.repository.RestauranteRepositoryQueries;
 
 @Repository
-public class RestauranteRepositoryImpl implements RestaurantesRepositoryQueries {
+public class RestauranteRepositoryImpl implements RestauranteRepositoryQueries {
 
 	@PersistenceContext
 	private EntityManager manager;
 	
 	@Autowired @Lazy
-	private RestaurantesRepository restauranteRepository;
+	private RestauranteRepository restauranteRepository;
 	
 	@Override
 	public List<Restaurante> find(String nome, 
