@@ -42,10 +42,11 @@ public class Restaurante {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(groups = Groups.CozinhaId.class)
+	@NotBlank
 	@Column(nullable = false)
 	private String nome;
 	
+	@NotNull
 	@PositiveOrZero
 	@Column(name = "taxa_frete", nullable = false)
 	private BigDecimal taxaFrete;
